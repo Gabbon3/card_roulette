@@ -1,0 +1,36 @@
+/*
+cd card_roulette/css
+cd css
+sass --watch main.scss:main.css
+*/
+
+:root {
+    --bc: #222;
+    --color: #fff;
+    --bc-finestra: rgba(17, 17, 17, 0.8);
+    --font-family: 'Courier New', Courier, monospace;
+    --p-font-size: 18px;
+    /* colori */
+    --rosso: rgb(149, 38, 38); // rgb(177, 43, 43)
+    /* palette */
+    --c1: var(--rosso);
+}
+
+html {
+    background-color: var(--bc);
+    color: var(--color);
+}
+
+* {
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+
+@import 'comuni.scss';
+@import 'carte.scss';
+@import 'id.scss';
+@import 'animazioni.scss';
+
+::-webkit-scrollbar {
+    display: none;
+}
