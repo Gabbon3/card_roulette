@@ -74,9 +74,9 @@ const dealer = {
             if (this.telefono_usato) {
                 result = random.bool();
             } else {
-                this.telefono_usato = true;
                 result = true;
             }
+            this.telefono_usato = result;
         }
         // cambia proiettile se so che il successivo è falso
         else if (gadget == '🔧' && !this.chiave_inglese_usata) {
