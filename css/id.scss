@@ -37,8 +37,8 @@
     max-height: 150px;
     gap: 10px;
     overflow: scroll;
-    border-top: 1px solid #444;
-    border-bottom: 1px solid #444;
+    border-top: 1px solid var(--hr-color);
+    border-bottom: 1px solid var(--hr-color);
 
     &::-webkit-scrollbar {
         display: none;

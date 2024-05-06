@@ -65,12 +65,12 @@ const dealer = {
             result = true;
         }
         // vedi proiettile subito
-        else if (gadget == '🔎' && game.n_veri > 0 && game.n_falsi > 0 && !this.lente_usata) {
+        else if (gadget == '🔎' && game.n_veri > 0 && game.n_falsi > 0 && !this.lente_usata && typeof this.known_bullets[game.index_proiettile] === 'undefined') {
             this.lente_usata = true;
             result = true;
         }
         // vedi proiettile a caso 
-        else if (gadget == '📞' && game.n_veri > 0 && game.n_falsi > 0 && (!this.lente_usata || !this.telefono_usato)) {
+        else if (gadget == '📞' && game.n_veri > 0 && game.n_falsi > 0 && !this.lente_usata && !this.telefono_usato) {
             if (this.telefono_usato) {
                 result = random.bool();
             } else {
@@ -82,9 +82,12 @@ const dealer = {
         else if (gadget == '🔧' && !this.chiave_inglese_usata) {
             if (!this.known_bullets[game.index_proiettile]) {
                 result = true;
-            } else if (!this.scegli()) {
-                result = random.bool();
             }
+            // se non verrebbe scelto il proiettile
+            else if (!this.scegli()) {
+                result = random.min_max(0, 100) >= 75; // 25% di probabilità di scegliere di usarlo
+            }
+            // memorizzo il fatto di aver usato la chiave inglese
             if (result) this.chiave_inglese_usata = true;
         }
         // raddoppia il danno se
@@ -119,7 +122,7 @@ const dealer = {
     shoot_phase() {
         game.timeouts.add(() => {
             const spara_al_giocatore = dealer.scegli();
-            !spara_al_giocatore ? log.print('=> 💀') : log.print('💀 => 👾');
+            !spara_al_giocatore ? log.print('=> 💀') : log.print('💀 => 🗿');
             game.timeouts.add(() => {
                 const result = game.spara(spara_al_giocatore ? 1 : 0); // 1 cioe spara al gicatore 0 cioe spara al dealer
                 if (!game.proiettili_esauriti) {

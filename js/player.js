@@ -29,7 +29,7 @@ const player = {
      */
     player_shoot(giocatore) {
         if (game.termina_partita || game.proiettili_esauriti) return;
-        giocatore == 1 ? log.print('👾 <=') : log.print('👾 => 💀');
+        giocatore == 1 ? log.print('🗿 <=') : log.print('🗿 => 💀');
         const mi_sparo = giocatore == 1;
         game.timeouts.add(() => {
             const result = game.spara(giocatore);

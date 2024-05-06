@@ -15,7 +15,7 @@ const html = {
         $('#game').html(txt);
     },
     stampa_vite(p = game.giocatori[1].vite, d = game.giocatori[0].vite) {
-        $('#vite').html("👾".repeat(p));
+        $('#vite').html("🗿".repeat(p));
         $('#vite_dealer').html("💀".repeat(d));
     },
     lock_player(bool) {

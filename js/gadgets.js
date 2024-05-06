@@ -138,9 +138,9 @@ const gadgets = {
         }
         // se si invece attivo l'effetto
         this.active(gadget, giocatore);
-        html.lock_gadgets(true, true);
+        const lock = giocatore == 0;
+        html.lock_gadgets(lock, !lock);
         setTimeout(() => {
-            html.lock_gadgets(false, false);
             $(btn).remove();
             // rimuovo l'elemento dall'array che tiene conto degli elementi
             const posizione = game.giocatori[giocatore].gadgets.indexOf(gadget);

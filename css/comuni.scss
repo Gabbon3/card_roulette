@@ -192,7 +192,7 @@ p {
 
     .btn {
         border-radius: 0;
-        border-right: 1px solid #444;
+        border-right: 1px solid var(--hr-color);
     }
 
     .btn:first-of-type {
@@ -211,14 +211,14 @@ hr {
     width: 95%;
     height: 1px;
     border: none;
-    background-color: #444;
+    background-color: var(--hr-color);
 }
 
 .input {
     background-color: rgba(51, 51, 51, 0.4);
     color: var(--color);
     padding: 10px 5px;
-    border: 1px solid #444;
+    border: 1px solid var(--hr-color);
     border-radius: 5px;
     font-size: var(--p-font-size);
     font-family: var(--font-family);
@@ -240,9 +240,10 @@ hr {
     .row {
         flex-grow: 1;
         margin: 5px;
+        border-right: 1px solid var(--hr-color);
 
-        &:first-child {
-            border-right: 2px solid #444;
+        &:last-of-type {
+            border: none;
         }
     }
 }

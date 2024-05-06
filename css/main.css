@@ -5,7 +5,7 @@ cd css
 sass --watch main.scss:main.css
 */
 :root {
-  --bc: #222;
+  --bc: #2b4d2c;
   --color: #fff;
   --bc-finestra: rgba(17, 17, 17, 0.8);
   --font-family: "Courier New", Courier, monospace;
@@ -14,6 +14,7 @@ sass --watch main.scss:main.css
   --rosso: rgb(149, 38, 38);
   /* palette */
   --c1: var(--rosso);
+  --hr-color: #eee;
 }
 
 html {
@@ -195,7 +196,7 @@ p svg {
 }
 .btn-sequence .btn {
   border-radius: 0;
-  border-right: 1px solid #444;
+  border-right: 1px solid var(--hr-color);
 }
 .btn-sequence .btn:first-of-type {
   border-radius: 10px 0 0 10px;
@@ -211,14 +212,14 @@ hr {
   width: 95%;
   height: 1px;
   border: none;
-  background-color: #444;
+  background-color: var(--hr-color);
 }
 
 .input {
   background-color: rgba(51, 51, 51, 0.4);
   color: var(--color);
   padding: 10px 5px;
-  border: 1px solid #444;
+  border: 1px solid var(--hr-color);
   border-radius: 5px;
   font-size: var(--p-font-size);
   font-family: var(--font-family);
@@ -240,9 +241,10 @@ hr {
 .col .row {
   flex-grow: 1;
   margin: 5px;
+  border-right: 1px solid var(--hr-color);
 }
-.col .row:first-child {
-  border-right: 2px solid #444;
+.col .row:last-of-type {
+  border: none;
 }
 
 :root {
@@ -251,7 +253,8 @@ hr {
   --card-per-row: 8;
   --card-font-size: 2vw;
   --card-diagonal-font-size: 1.5vw;
-  --card-padding: 6px;
+  --card-padding: 10px;
+  --card-border-radius: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -260,22 +263,25 @@ hr {
     --card-width: 14%;
     --card-font-size: 4vw;
     --card-diagonal-font-size: 2vw;
+    --card-padding: 6px;
   }
 }
 .carta {
-  --rosso: rgb(167, 37, 37);
+  --rosso: rgb(197, 29, 29);
   --nero: #111;
+  --font-card-color: #151515;
+  --bg-card: #fff;
   position: relative;
+  margin: var(--vertical-margin) var(--orizzontal-margin);
   width: var(--card-width);
   aspect-ratio: var(--card-aspect-ratio);
-  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(27, 27, 27, 0.25);
   --orizzontal-margin: calc((100% - (var(--card-per-row) * var(--card-width))) / (var(--card-per-row) * 2));
+  border-radius: var(--card-border-radius);
   --vertical-margin: 10px;
-  margin: var(--vertical-margin) var(--orizzontal-margin);
   transition: ease-in-out 0.4s;
+  cursor: pointer;
 }
 .carta .fronte,
 .carta .retro {
@@ -286,17 +292,18 @@ hr {
   width: 100%;
   height: 100%;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: var(--card-border-radius);
 }
 .carta .fronte {
   --colore-simboli: var(--nero);
-  background-color: #f5f5f5;
+  background: var(--bg-card);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   /* SIMBOLI DIAGONALI */
+  /* -------------- */
   /* -------------- */
 }
 .carta .fronte:before, .carta .fronte:after {
@@ -323,8 +330,8 @@ hr {
   color: var(--rosso);
 }
 .carta .fronte.colore.nero {
-  --colore-simboli: var(--nero);
-  color: var(--nero);
+  --colore-simboli: var(--font-card-color);
+  color: var(--font-card-color);
 }
 .carta .fronte.Cuori:before, .carta .fronte.Cuori:after {
   content: attr(value) " ♥";
@@ -341,6 +348,14 @@ hr {
 .carta .fronte.Fiori:before, .carta .fronte.Fiori:after {
   content: attr(value) " ♣️";
   color: var(--colore-simboli);
+}
+.carta .fronte .card__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.carta .fronte .card__column--centered {
+  justify-content: center;
 }
 .carta .fronte .valore {
   font-size: var(--card-font-size);
@@ -365,7 +380,7 @@ hr {
   transform: rotate(-90deg);
 }
 .carta .retro {
-  border: 5px solid #eee;
+  border: calc(var(--card-padding) - 5px) solid #eee;
   transform: rotateY(0deg);
   opacity: 0;
   --c: #111;
@@ -433,8 +448,8 @@ hr {
   max-height: 150px;
   gap: 10px;
   overflow: scroll;
-  border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
+  border-top: 1px solid var(--hr-color);
+  border-bottom: 1px solid var(--hr-color);
 }
 #log::-webkit-scrollbar {
   display: none;
