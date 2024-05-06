@@ -9,13 +9,16 @@ class Carta {
         const colore = this.get_colore();
         const valore = this.get_valore();
         const seme = this.get_seme();
+        const corner = `<img class='corner' src='./img/corner.png'></img>`
         return `
         <div class='carta ${coperta ? 'coperta' : ''}'>
-            <div class="fronte colore ${colore}">
+            <div class='retro ${this.sfondo}'></div>
+            <div class="fronte ${this.seme} valore-${valore} colore ${colore}" value="${valore}">
+                ${corner}
                 <span class='valore'>${valore}</span>
                 <span class='seme'>${seme}</span>
+                ${corner}
             </div>
-            <div class='retro ${this.sfondo}'></div>
         </div>
         `;
     }

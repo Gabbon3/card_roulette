@@ -97,14 +97,11 @@ const dealer = {
             - il prossimo proiettile è un proiettile vero
             - lo scudo non sia gia stato usato
         */
-        else if (
-                gadget == '🛡️' && 
-                (
-                    game.n_veri > game.n_falsi || 
-                    this.known_bullets[game.index_proiettile + 1] === true
-                ) && 
+        else if (gadget == '🛡️' && 
+                (game.n_veri > game.n_falsi || this.known_bullets[game.index_proiettile + 1] === true) && 
                 !this.scudo_usato) {
             result = true;
+            this.scudo_usato = true;
         }
         // recupera vita al 50%
         else if (gadget == '💊' && dealer.vite < game.max_vita && random.min_max(0, 100) > 70) {
@@ -122,7 +119,7 @@ const dealer = {
     shoot_phase() {
         game.timeouts.add(() => {
             const spara_al_giocatore = dealer.scegli();
-            !spara_al_giocatore ? log.print('=> 🤖') : log.print('🤖 => 👾');
+            !spara_al_giocatore ? log.print('=> 💀') : log.print('💀 => 👾');
             game.timeouts.add(() => {
                 const result = game.spara(spara_al_giocatore ? 1 : 0); // 1 cioe spara al gicatore 0 cioe spara al dealer
                 if (!game.proiettili_esauriti) {
@@ -144,7 +141,7 @@ const dealer = {
                         }
                     }, (game.tempo_attesa_sparo + 3000))
                 }
-            }, 3000);
+            }, 2500);
         }, 1000);
     },
     /**

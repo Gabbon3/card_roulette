@@ -1,8 +1,10 @@
 :root {
-    --card-width: 18%;
+    --card-width: 12%;
     --card-aspect-ratio: 10 / 14;
-    --card-per-row: 5;
-    --card-font-size: 40px;
+    --card-per-row: 8;
+    --card-font-size: 2vw;
+    --card-diagonal-font-size: 1.5vw;
+    --card-padding: 6px;
 }
 
 @media screen and (max-width: 768px) {
@@ -10,6 +12,7 @@
         --card-per-row: 6;
         --card-width: 14%;
         --card-font-size: 4vw;
+        --card-diagonal-font-size: 2vw;
     }
 }
 
@@ -18,10 +21,10 @@
     --rosso: rgb(167, 37, 37);
     --nero: #111;
     // ---
+    position: relative;
     width: var(--card-width);
     aspect-ratio: var(--card-aspect-ratio);
     border-radius: 5px;
-    position: relative;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
     cursor: pointer;
@@ -43,28 +46,112 @@
     }
 
     .fronte {
+        --colore-simboli: var(--nero);
         background-color: #f5f5f5;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        position: relative;
+
+        /* SIMBOLI DIAGONALI */
+        &:before,
+        &:after {
+            content: attr(value);
+            font-family: var(--font-family);
+            font-weight: bold;
+            position: absolute;
+            width: 12px;
+            text-align: center;
+            letter-spacing: -2px;
+            font-size: var(--card-diagonal-font-size);
+        }
+
+        &:before {
+            top: var(--card-padding);
+            left: var(--card-padding);
+        }
+
+        &:after {
+            bottom: var(--card-padding);
+            right: var(--card-padding);
+            transform: rotate(180deg)
+        }
+
+        &.colore {
+            &.rosso {
+                --colore-simboli: var(--rosso);
+                color: var(--rosso);
+            }
+
+            &.nero {
+                --colore-simboli: var(--nero);
+                color: var(--nero);
+            }
+        }
+
+        &.Cuori {
+            &:before,
+            &:after {
+                content: attr(value) ' ♥';
+                color: var(--colore-simboli);
+            }
+        }
+
+        &.Quadri {
+            &:before,
+            &:after {
+                content: attr(value) ' ♦️';
+                color: var(--colore-simboli);
+            }
+        }
+
+        &.Picche {
+            &:before,
+            &:after {
+                content: attr(value) ' ♠️';
+                color: var(--colore-simboli);
+            }
+        }
+
+        &.Fiori {
+            &:before,
+            &:after {
+                content: attr(value) ' ♣️';
+                color: var(--colore-simboli);
+            }
+        }
+
+        /* -------------- */
 
         .valore {
             font-size: var(--card-font-size);
             font-weight: bold;
+
+            // &:last-of-type {
+            //     transform: rotate(180deg);
+            // }
         }
 
         .seme {
             font-size: calc(10px + var(--card-font-size));
         }
 
-        &.colore {
-            &.rosso {
-                color: var(--rosso);
+        .corner {
+            position: absolute;
+            width: var(--card-diagonal-font-size);
+            height: var(--card-diagonal-font-size);
+
+            &:first-of-type {
+                top: var(--card-padding);
+                right: var(--card-padding);
+                transform: rotate(90deg);
             }
 
-            &.nero {
-                color: var(--nero);
+            &:last-of-type {
+                bottom: var(--card-padding);
+                left: var(--card-padding);
+                transform: rotate(-90deg);
             }
         }
     }
@@ -88,15 +175,16 @@
         --s: 30px;
         --_s: calc(2*var(--s)) calc(2*var(--s));
         --_g: 35.36% 35.36% at;
-        --_c: #0000 66%, var(--l) 68% 70%, #0000 72%;
+        --_c: #0000 66%,
+        var(--l) 68% 70%,
+        #0000 72%;
 
-        background:
-            radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
-            radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
-            radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
-            radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
-            repeating-conic-gradient(var(--c) 0 25%, #0000 0 50%) 0 0/var(--_s),
-            radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+        background: radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
+        radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
+        radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
+        radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
+        repeating-conic-gradient(var(--c) 0 25%, #0000 0 50%) 0 0/var(--_s),
+        radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
     }
 
     &.coperta {
