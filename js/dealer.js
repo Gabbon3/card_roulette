@@ -70,7 +70,7 @@ const dealer = {
             result = true;
         }
         // vedi proiettile a caso 
-        else if (gadget == '📞' && game.n_veri > 0 && game.n_falsi > 0 && !this.lente_usata) {
+        else if (gadget == '📞' && game.n_veri > 0 && game.n_falsi > 0 && (!this.lente_usata || !this.telefono_usato)) {
             if (this.telefono_usato) {
                 result = random.bool();
             } else {
