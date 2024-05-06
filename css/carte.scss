@@ -11,10 +11,11 @@
 @media screen and (max-width: 768px) {
     :root {
         --card-per-row: 6;
-        --card-width: 14%;
-        --card-font-size: 4vw;
+        --card-width: 16%;
+        --card-font-size: 3vw;
         --card-diagonal-font-size: 2vw;
         --card-padding: 6px;
+        --card-border-radius: 5px;
     }
 }
 
