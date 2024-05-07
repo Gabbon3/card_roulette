@@ -1,7 +1,5 @@
 $(document).ready(() => {
-        game.init();
-        game.init_round();
-        $('#nuova_partita').on('click', () => {
+    $('#nuova_partita').on('click', () => {
         game.init();
         game.init_round();
     });
@@ -13,16 +11,16 @@ class Card_Roulette {
         // this.dealer = new Dealer();
         // 0 il dealer 1 il player
         this.giocatori = {
-            0: { 
-                vite: 4, 
+            0: {
+                vite: 4,
                 gadgets: [],
                 scudo: false,
-            }, 
-            1: { 
-                vite: 4, 
+            },
+            1: {
+                vite: 4,
                 gadgets: [],
                 scudo: false,
-            } 
+            }
         };
         this.max_vita = 4;
         this.n_veri = 0;
@@ -41,16 +39,16 @@ class Card_Roulette {
         // inizializzo le vite dei giocatori
         const vite = this.max_vita;
         this.giocatori = {
-            0: { 
-                vite: vite, 
+            0: {
+                vite: vite,
                 gadgets: [],
                 scudo: false,
-            }, 
-            1: { 
-                vite: vite, 
+            },
+            1: {
+                vite: vite,
                 gadgets: [],
                 scudo: false,
-            } 
+            }
         };
         // html vite
         html.stampa_vite(vite, vite);
