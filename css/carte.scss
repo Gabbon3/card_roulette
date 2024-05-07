@@ -21,12 +21,12 @@
 
 .carta {
     // variabili
-    --rosso: rgb(197, 29, 29);
+    --rosso: rgb(149, 46, 46);
     --nero: #111;
-    --font-card-color: #151515;
-    --bg-card: #fff;
+    --font-card-color: #dbe0ff;
+    --bg-card: #1a1a20;
+    --card-border-color-retro: #dbe0ff;
     // ---
-
     position: relative;
     margin: var(--vertical-margin) var(--orizzontal-margin);
     width: var(--card-width);
@@ -56,10 +56,6 @@
         // background-color: #f5f5f5;
         background: var(--bg-card);
         // background: linear-gradient(250deg, var(--bg-card) 0%, rgb(27, 31, 39) 100%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         position: relative;
 
         /* SIMBOLI DIAGONALI */
@@ -136,15 +132,59 @@
 
         /* -------------- */
 
-        .card__column {
+        .card__inner {
+            box-sizing: border-box;
+            position: absolute;
             display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            
-            &--centered {
+            top: calc(4 * var(--card-padding));
+            left: calc(4 * var(--card-padding));
+            right: calc(4 * var(--card-padding));
+            bottom: calc(4 * var(--card-padding));
+
+            &.centered {
                 justify-content: center;
             }
+
+            .card__column {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+
+                &.single {
+                    margin: 0 auto;
+                }
+
+                &.centered {
+                    display: flex;
+                    justify-content: center;
+                    gap: calc(2 * var(--card-width));
+                }
+
+                &.huge-symbol {
+                    justify-content: none;
+
+                    .card__symbol {
+                        margin-top: calc(var(--card-font-size));
+                        margin-bottom: auto;
+                    }
+                }
+            }
+
+            .card__symbol {
+                font-size: calc(var(--card-font-size) * 1.25);
+
+                // &.big {
+                //     flex-basis: calc(0.35 * var(--card-width));
+                // }
+                
+                // &.huge {
+                //     flex-basis: calc(0.63 * var(--card-width));
+                // }
+            }
         }
+
 
         /* -------------- */
 
@@ -181,7 +221,7 @@
     }
 
     .retro {
-        border: calc(var(--card-padding) - 5px) solid #eee;
+        // border: calc(var(--card-padding) - 5px) solid var(--card-border-color-retro);
         transform: rotateY(0deg);
         opacity: 0;
 

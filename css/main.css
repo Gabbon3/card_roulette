@@ -5,7 +5,7 @@ cd css
 sass --watch main.scss:main.css
 */
 :root {
-  --bc: #2b4d2c;
+  --bc: #222129;
   --color: #fff;
   --bc-finestra: rgba(17, 17, 17, 0.8);
   --font-family: "Courier New", Courier, monospace;
@@ -268,10 +268,11 @@ hr {
   }
 }
 .carta {
-  --rosso: rgb(197, 29, 29);
+  --rosso: rgb(149, 46, 46);
   --nero: #111;
-  --font-card-color: #151515;
-  --bg-card: #fff;
+  --font-card-color: #dbe0ff;
+  --bg-card: #1a1a20;
+  --card-border-color-retro: #dbe0ff;
   position: relative;
   margin: var(--vertical-margin) var(--orizzontal-margin);
   width: var(--card-width);
@@ -298,10 +299,6 @@ hr {
 .carta .fronte {
   --colore-simboli: var(--nero);
   background: var(--bg-card);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
   /* SIMBOLI DIAGONALI */
   /* -------------- */
@@ -350,13 +347,42 @@ hr {
   content: attr(value) " ♣️";
   color: var(--colore-simboli);
 }
-.carta .fronte .card__column {
+.carta .fronte .card__inner {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: calc(4 * var(--card-padding));
+  left: calc(4 * var(--card-padding));
+  right: calc(4 * var(--card-padding));
+  bottom: calc(4 * var(--card-padding));
+}
+.carta .fronte .card__inner.centered {
+  justify-content: center;
+}
+.carta .fronte .card__inner .card__column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
 }
-.carta .fronte .card__column--centered {
+.carta .fronte .card__inner .card__column.single {
+  margin: 0 auto;
+}
+.carta .fronte .card__inner .card__column.centered {
+  display: flex;
   justify-content: center;
+  gap: calc(2 * var(--card-width));
+}
+.carta .fronte .card__inner .card__column.huge-symbol {
+  justify-content: none;
+}
+.carta .fronte .card__inner .card__column.huge-symbol .card__symbol {
+  margin-top: calc(var(--card-font-size));
+  margin-bottom: auto;
+}
+.carta .fronte .card__inner .card__symbol {
+  font-size: calc(var(--card-font-size) * 1.25);
 }
 .carta .fronte .valore {
   font-size: var(--card-font-size);
@@ -381,7 +407,6 @@ hr {
   transform: rotate(-90deg);
 }
 .carta .retro {
-  border: calc(var(--card-padding) - 5px) solid #eee;
   transform: rotateY(0deg);
   opacity: 0;
   --c: #111;
@@ -517,4 +542,6 @@ hr {
 }
 ::-webkit-scrollbar {
   display: none;
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

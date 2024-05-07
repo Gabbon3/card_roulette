@@ -15,8 +15,7 @@ class Carta {
         <div class='carta ${coperta ? 'coperta' : ''}'>
             <div class='retro ${this.sfondo}'></div>
             <div class="fronte ${this.seme} valore-${valore} colore ${colore}" value="${valore}">
-                <span class='valore'>${valore}</span>
-                <span class='seme'>${seme}</span>
+                ${this.get_html_valore()}
             </div>
         </div>
         `;
@@ -25,24 +24,24 @@ class Carta {
     }
 
     get_html_valore() {
-        let txt = '';
+        let txt = '<div class="card__inner">';
         const seme = this.get_seme();
         if ([1, 11, 12, 13].indexOf(this.valore) === -1) {
             if (this.valore == 2) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column single">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 			    </div>`;
             }
             if (this.valore == 3) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column single">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 			    </div>`;
             }
             if (this.valore == 4) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 			    </div><div class="card__column">
@@ -51,10 +50,10 @@ class Carta {
                 </div>`;
             }
             if (this.valore == 5) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
-			    </div><div class="card__column">
+			    </div><div class="card__column centered">
                     <div class="card__symbol">${seme}</div>
                 </div><div class="card__column">
                     <div class="card__symbol">${seme}</div>
@@ -62,7 +61,7 @@ class Carta {
                 </div>`;
             }
             if (this.valore == 6) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -73,12 +72,12 @@ class Carta {
                 </div>`;
             }
             if (this.valore == 7) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
-			    </div><div class="card__column">
-                    <div class="card__symbol">${seme}</div>
+			    </div><div class="card__column centered huge-symbol">
+                    <div class="card__symbol huge">${seme}</div>
                 </div><div class="card__column">
                     <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -86,13 +85,13 @@ class Carta {
                 </div>`;
             }
             if (this.valore == 8) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
-			    </div><div class="card__column">
-                    <div class="card__symbol">${seme}</div>
-                    <div class="card__symbol">${seme}</div>
+			    </div><div class="card__column centered">
+                    <div class="card__symbol big">${seme}</div>
+                    <div class="card__symbol big">${seme}</div>
                 </div><div class="card__column">
                     <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -100,13 +99,13 @@ class Carta {
                 </div>`;
             }
             if (this.valore == 9) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
-			    </div><div class="card__column">
-                    <div class="card__symbol">${seme}</div>
+			    </div><div class="card__column centered huge-symbol">
+                    <div class="card__symbol huge">${seme}</div>
                 </div><div class="card__column">
                     <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -115,14 +114,14 @@ class Carta {
                 </div>`;
             }
             if (this.valore == 10) {
-                txt = `<div class="card__column">
+                txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
-			    </div><div class="card__column">
-                    <div class="card__symbol">${seme}</div>
-                    <div class="card__symbol">${seme}</div>
+			    </div><div class="card__column centered">
+                    <div class="card__symbol big">${seme}</div>
+                    <div class="card__symbol big">${seme}</div>
                 </div><div class="card__column">
                     <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -131,9 +130,12 @@ class Carta {
                 </div>`;
             }
         } else {
-            txt = `<span class='seme'>${seme}</span>`;
+            txt += `<div class="card__column single centered">
+                <span class='valore'>${this.get_valore()}</span>
+                <span class='seme'>${seme}</span>
+            </div>`;
         }
-        return txt;
+        return txt + '</div>';
     }
 
     get_valore() {

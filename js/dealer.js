@@ -71,16 +71,13 @@ const dealer = {
         }
         // vedi proiettile a caso 
         else if (gadget == '📞' && game.n_veri > 0 && game.n_falsi > 0 && !this.lente_usata && !this.telefono_usato) {
-            if (this.telefono_usato) {
-                result = random.bool();
-            } else {
-                result = true;
-            }
+            result = true;
             this.telefono_usato = result;
         }
         // cambia proiettile se so che il successivo è falso
         else if (gadget == '🔧' && !this.chiave_inglese_usata) {
-            if (!this.known_bullets[game.index_proiettile]) {
+            // se so che il proiettile successivo è falso allora lo inverto
+            if (typeof this.known_bullets[game.index_proiettile] === 'boolean' && !this.known_bullets[game.index_proiettile]) {
                 result = true;
             }
             // se non verrebbe scelto il proiettile
