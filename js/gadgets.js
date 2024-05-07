@@ -54,8 +54,13 @@ const gadgets = {
      * 
      */
     birra() {
+        // ---
         const proiettili_html = document.querySelectorAll('#game .carta');
         proiettili_html[game.index_proiettile].classList.add('coperta');
+        // ---
+        const proiettile = game.proiettili[game.index_proiettile];
+        proiettile.sfondo === 'rosso' ? (game.n_veri++, game.n_falsi--) : (game.n_veri--, game.n_falsi++);
+        // ---
         game.index_proiettile++;
         game.check_round();
     },

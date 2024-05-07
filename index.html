@@ -50,7 +50,10 @@
         </div>
         <div id="log"></div>
         <div class="pagina">
-            <button class="btn" id="nuova_partita">Nuova Partita</button>
+            <div class="btn-group">
+                <button class="btn" id="nuova_partita">Nuova Partita</button>
+                <button class="btn open" data-target="finestra_informazioni">Info</button>
+            </div>
         </div>
     </div>
     <div id="fixed_deck">
@@ -59,6 +62,22 @@
     <!-- 
         FINESTRE
      -->
+    <div class="finestra glass" id="finestra_informazioni">
+        <button class="btn close" data-target="finestra_informazioni">x</button>
+        <h2>Informazioni</h2>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Simbolo</th>
+                    <th>Descrizione</th>
+                </tr>
+            </thead>
+            <tbody id="info_simboli">
+
+            </tbody>
+        </table>
+    </div>
     <!-- bc finestre -->
     <div id="death_screen"></div>
     <div id="bc_finestre" data-target=""></div>

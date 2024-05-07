@@ -1,11 +1,14 @@
-const dealer = {
-    // memorizza i proiettili quando utilizza il gadget del telefono
-    known_bullets: {}, // struttura: { indice_proiettile: true (p. vero), false (p. falso), ... }
-    lente_usata: false, // tiene traccia se ha usato la lente
-    telefono_usato: false, // tiene traccia se ha usato il telefono
-    chiave_inglese_usata: false, // tiene traccia se ha usato la chiave inglese
-    scudo_usato: false, // tiene traccia se ha usato lo scudo
-    dinamite_usato: false, // tiene traccia se ha usato lo scudo
+class Dealer {
+    constructor(dealer_id) {
+        // memorizza i proiettili quando utilizza il gadget del telefono
+        this.known_bullets = {}; // struttura: { indice_proiettile: true (p. vero), false (p. falso), ... }
+        this.lente_usata = false; // tiene traccia se ha usato la lente
+        this.telefono_usato = false; // tiene traccia se ha usato il telefono
+        this.chiave_inglese_usata = false; // tiene traccia se ha usato la chiave inglese
+        this.scudo_usato = false; // tiene traccia se ha usato lo scudo
+        this.dinamite_usato = false; // tiene traccia se ha usato lo scudo
+        this.dealer_id = dealer_id;
+    }
     /**
      * 
      * @returns 
@@ -17,7 +20,7 @@ const dealer = {
         log.print('-----');
         log.print('È il turno del Dealer');
         this.gadget_phase();
-    },
+    }
     /**
      * fa le scelte in base ai gadgets
      */
@@ -35,25 +38,25 @@ const dealer = {
             const len = -1;
 
             // funzione ricorsiva che verifica se usare tutti i gadgets
-            itera_gadgets(iteratore);
+            itera_gadgets(iteratore, this);
 
-            function itera_gadgets(i) {
+            function itera_gadgets(i, dealer_obj) {
                 if (i == len) {
-                    return dealer.shoot_phase();
+                    return dealer_obj.shoot_phase();
                 }
                 const gadget = game.giocatori[0].gadgets[i];
-                const usa_gadget = dealer.scegli_gadget(gadget);
+                const usa_gadget = dealer_obj.scegli_gadget(gadget);
                 if (usa_gadget) {
                     $(html_btns[i]).trigger('click');
                     setTimeout(() => {
-                        itera_gadgets(i - 1);
+                        itera_gadgets(i - 1, dealer_obj);
                     }, 1500);
                 } else {
-                    itera_gadgets(i - 1);
+                    itera_gadgets(i - 1, dealer_obj);
                 }
             }
         }, 2000);
-    },
+    }
     scegli_gadget(gadget) {
         // init
         const dealer = game.giocatori[0];
@@ -97,9 +100,9 @@ const dealer = {
             - il prossimo proiettile è un proiettile vero
             - lo scudo non sia gia stato usato
         */
-        else if (gadget == '🛡️' && 
-                (game.n_veri > game.n_falsi || this.known_bullets[game.index_proiettile + 1] === true) && 
-                !this.scudo_usato) {
+        else if (gadget == '🛡️' &&
+            (game.n_veri > game.n_falsi || this.known_bullets[game.index_proiettile + 1] === true) &&
+            !this.scudo_usato) {
             result = true;
             this.scudo_usato = true;
         }
@@ -112,7 +115,7 @@ const dealer = {
             result = true;
         }
         return result;
-    },
+    }
     /**
      * Fa le scelte per quanto riguarda chi sparare
      */
@@ -137,13 +140,13 @@ const dealer = {
                              * se ci sono ancora proiettili
                              * passo il turno al giocatore
                             */
-                            if (game.check_round()) player.player_turn();
+                            if (game.check_round(result, 0)) player.player_turn();
                         }
                     }, (game.tempo_attesa_sparo + 3000))
                 }
             }, 2500);
         }, 1000);
-    },
+    }
     /**
      * in base al numero di proiettili, viene scelto se sparare o spararsi
      * @returns {Boolean} true: spara al giocatore, false: il dealer si spara
@@ -172,3 +175,5 @@ const dealer = {
         return result;
     }
 }
+
+const dealer = new Dealer(0);

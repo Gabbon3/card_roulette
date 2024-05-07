@@ -232,6 +232,19 @@ hr {
     border-radius: 20px;
 }
 
+
+table {
+    text-align: left;
+    font-size: var(--p-font-size);
+    width: 100%;
+    border: 1px solid #444;
+
+    th, td {
+        padding: 5px;
+        border: 1px solid #444;
+    }
+}
+
 .col {
     display: flex;
     flex-wrap: nowrap;

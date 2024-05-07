@@ -72,6 +72,14 @@ const html = {
             $('#death_screen').fadeOut('slow');
         }, 1500);
     },
+    stampa_informazioni() {
+        const tr = dom.get1('#info_simboli');
+        tr.innerHTML = '';
+        for (let simbolo in gadgets.info) {
+            const descrizione = gadgets.info[simbolo];
+            tr.innerHTML += `<tr><td>${simbolo}</td><td>${descrizione}</td></tr>`
+        }
+    }
 }
 
 const dom = {

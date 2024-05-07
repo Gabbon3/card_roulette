@@ -161,10 +161,14 @@ class Card_Roulette {
     }
     /**
      * verifica se ci sono ancora proiettili da giocare se no nuovo round
+     * @param {Boolean} result risultato del proiettile sparato, true se era vero, false se era falso
+     * @param {Number} giocatore il giocatore che ha sparato il proiettile
      * @returns {Boolean} true puo continuare il round, false sono terminati i proiettili
      */
-    check_round() {
+    check_round(result, giocatore) {
         if (game.index_proiettile == game.proiettili.length) {
+            // se il proiettile era vero inverto il giocatore
+            if (result) this.current_player = (giocatore == 1 ? 0 : 1);
             this.timeouts.clear_all();
             log.print('Proiettili esauriti, nuovo round');
             setTimeout(() => {

@@ -47,7 +47,7 @@ const player = {
                      * se ci sono ancora proiettili
                      * passo il turno al dealer
                      */
-                    if (game.check_round()) dealer.dealer_turn();
+                    if (game.check_round(result, 1)) dealer.dealer_turn();
                 }
             }, (game.tempo_attesa_sparo + 2000));
         }, 1000);

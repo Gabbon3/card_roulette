@@ -233,6 +233,17 @@ hr {
   border-radius: 20px;
 }
 
+table {
+  text-align: left;
+  font-size: var(--p-font-size);
+  width: 100%;
+  border: 1px solid #444;
+}
+table th, table td {
+  padding: 5px;
+  border: 1px solid #444;
+}
+
 .col {
   display: flex;
   flex-wrap: nowrap;
@@ -420,7 +431,7 @@ hr {
 }
 .carta .retro.rosso {
   --c: var(--rosso);
-  --l: rgb(203, 123, 123);
+  --l: rgb(221, 160, 160);
 }
 .carta .retro.nero {
   --c: var(--nero);
