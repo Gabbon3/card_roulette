@@ -87,7 +87,6 @@ class Card_Roulette {
         // stampo le carte
         log.print('Ci sono ' + this.n_veri + ' proiettili veri e ' + this.n_falsi + ' falsi');
         html.stampa_carte_round(this.proiettili);
-        return;
         // inizializzo i gadgets
         const n_gadgets = random.min_max(2, 4);
         this.giocatori[0].gadgets = this.giocatori[0].gadgets.concat(this.genera_gadgets(n_gadgets));
