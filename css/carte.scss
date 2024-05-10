@@ -1,22 +1,47 @@
 :root {
-    --card-width: 12%;
-    --card-aspect-ratio: 10 / 14;
-    --card-per-row: 8;
-    --card-font-size: 2vw;
-    --card-diagonal-font-size: 1.5vw;
-    --card-padding: 10px;
+    --card-width: 19%;
+    --card-aspect-ratio: 10 / 15;
+    --card-per-row: 5;
+    // font size
+    --card-font-size: 3.5vw;
+    --card-diagonal-font-size: 2.5vw;
+    // padding, radius
+    --card-padding: 7px;
     --card-border-radius: 10px;
+    // dimensione container dei simboli
+    --card-inner-width: calc(100% - (8 * var(--card-padding)));
+    --card-inner-height: calc(100% - (6 * var(--card-padding)));
+}
+
+@media screen and (min-width: 1000px) {
+    :root {
+        --card-font-size: 30px;
+        --card-diagonal-font-size: 25px;
+        // ---
+        --card-inner-width: calc(190px - (8.5 * var(--card-padding)));
+        --card-inner-height: calc(285px - (6 * var(--card-padding)));
+    }
 }
 
 @media screen and (max-width: 768px) {
     :root {
-        --card-per-row: 6;
-        --card-width: 16%;
-        --card-font-size: 3vw;
-        --card-diagonal-font-size: 2vw;
+        --card-per-row: 5;
+        --card-width: 19%;
+        --card-font-size: 3.5vw;
+        --card-diagonal-font-size: 2.5vw;
         --card-padding: 6px;
         --card-border-radius: 5px;
     }
+}
+
+#game {
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .carta {
@@ -57,6 +82,9 @@
         background: var(--bg-card);
         // background: linear-gradient(250deg, var(--bg-card) 0%, rgb(27, 31, 39) 100%);
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         /* SIMBOLI DIAGONALI */
         &:before,
@@ -137,10 +165,8 @@
             position: absolute;
             display: flex;
             justify-content: space-between;
-            top: calc(4 * var(--card-padding));
-            left: calc(4 * var(--card-padding));
-            right: calc(4 * var(--card-padding));
-            bottom: calc(4 * var(--card-padding));
+            width: var(--card-inner-width);
+            height: var(--card-inner-height);
 
             &.centered {
                 justify-content: center;
@@ -159,7 +185,7 @@
                 &.centered {
                     display: flex;
                     justify-content: center;
-                    gap: calc(2 * var(--card-width));
+                    gap: calc(var(--card-width));
                 }
 
                 &.huge-symbol {
@@ -173,12 +199,16 @@
             }
 
             .card__symbol {
-                font-size: calc(var(--card-font-size) * 1.25);
+                font-size: calc(var(--card-font-size) * 1.5);
+
+                &.asso {
+                    font-size: calc(var(--card-font-size) * 3);
+                }
 
                 // &.big {
                 //     flex-basis: calc(0.35 * var(--card-width));
                 // }
-                
+
                 // &.huge {
                 //     flex-basis: calc(0.63 * var(--card-width));
                 // }

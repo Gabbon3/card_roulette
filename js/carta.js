@@ -26,21 +26,32 @@ class Carta {
     get_html_valore() {
         let txt = '<div class="card__inner">';
         const seme = this.get_seme();
-        if ([1, 11, 12, 13].indexOf(this.valore) === -1) {
-            if (this.valore == 2) {
+        if ([11, 12, 13].indexOf(this.valore) === -1) {
+            if (this.valore == 1) {
+                txt += `<div class="card__column single centered">
+				    <div class="card__symbol asso">${seme}</div>
+			    </div>`;
+            }
+            else if (this.valore == 2) {
                 txt += `<div class="card__column single">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 			    </div>`;
             }
-            if (this.valore == 3) {
+            else if (this.valore == 2) {
+                txt += `<div class="card__column single">
+				    <div class="card__symbol">${seme}</div>
+				    <div class="card__symbol">${seme}</div>
+			    </div>`;
+            }
+            else if (this.valore == 3) {
                 txt += `<div class="card__column single">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
 			    </div>`;
             }
-            if (this.valore == 4) {
+            else if (this.valore == 4) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -49,7 +60,7 @@ class Carta {
                     <div class="card__symbol">${seme}</div>
                 </div>`;
             }
-            if (this.valore == 5) {
+            else if (this.valore == 5) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -60,7 +71,7 @@ class Carta {
                     <div class="card__symbol">${seme}</div>
                 </div>`;
             }
-            if (this.valore == 6) {
+            else if (this.valore == 6) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -71,7 +82,7 @@ class Carta {
                     <div class="card__symbol">${seme}</div>
                 </div>`;
             }
-            if (this.valore == 7) {
+            else if (this.valore == 7) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -84,7 +95,7 @@ class Carta {
                     <div class="card__symbol">${seme}</div>
                 </div>`;
             }
-            if (this.valore == 8) {
+            else if (this.valore == 8) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -98,7 +109,7 @@ class Carta {
                     <div class="card__symbol">${seme}</div>
                 </div>`;
             }
-            if (this.valore == 9) {
+            else if (this.valore == 9) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>
@@ -113,7 +124,7 @@ class Carta {
                     <div class="card__symbol">${seme}</div>
                 </div>`;
             }
-            if (this.valore == 10) {
+            else if (this.valore == 10) {
                 txt += `<div class="card__column">
 				    <div class="card__symbol">${seme}</div>
 				    <div class="card__symbol">${seme}</div>

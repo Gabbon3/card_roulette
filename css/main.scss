@@ -5,7 +5,7 @@ sass --watch main.scss:main.css
 */
 
 :root {
-    --bc: #222129; // #2b4d2c
+    --bc: #2e2d32; // #222129
     --color: #fff;
     --bc-finestra: rgba(17, 17, 17, 0.8);
     --font-family: 'Courier New', Courier, monospace;
@@ -15,6 +15,9 @@ sass --watch main.scss:main.css
     /* palette */
     --c1: var(--rosso);
     --hr-color: #eee;
+    // btn
+    --btn-bg: #3f3d49;
+    --btn-hover-bg: #454250;
 }
 
 html {

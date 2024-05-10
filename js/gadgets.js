@@ -57,9 +57,8 @@ const gadgets = {
         // ---
         const proiettili_html = document.querySelectorAll('#game .carta');
         proiettili_html[game.index_proiettile].classList.add('coperta');
-        // ---
-        const proiettile = game.proiettili[game.index_proiettile];
-        proiettile.sfondo === 'rosso' ? (game.n_veri++, game.n_falsi--) : (game.n_veri--, game.n_falsi++);
+        // --- conto i proiettili
+        game.conta_proiettili();
         // ---
         game.index_proiettile++;
         game.check_round();
@@ -98,8 +97,8 @@ const gadgets = {
         proiettile.sfondo = sfondo;
         // nell'html
         proiettile_html.setAttribute('class', 'retro ' + sfondo);
-        // modifico anche il numero di proiettili
-        proiettile.sfondo === 'rosso' ? (game.n_veri++, game.n_falsi--) : (game.n_veri--, game.n_falsi++);
+        // conto i proiettili falsi e veri
+        game.conta_proiettili();
     },
     /**
      * 

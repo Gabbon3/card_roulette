@@ -5,7 +5,7 @@ cd css
 sass --watch main.scss:main.css
 */
 :root {
-  --bc: #222129;
+  --bc: #2e2d32;
   --color: #fff;
   --bc-finestra: rgba(17, 17, 17, 0.8);
   --font-family: "Courier New", Courier, monospace;
@@ -15,6 +15,8 @@ sass --watch main.scss:main.css
   /* palette */
   --c1: var(--rosso);
   --hr-color: #eee;
+  --btn-bg: #3f3d49;
+  --btn-hover-bg: #454250;
 }
 
 html {
@@ -124,9 +126,8 @@ p svg {
 }
 
 .btn {
-  --bc-btn: #333;
-  background-color: var(--bc-btn);
-  color: var(--color);
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
   font-size: var(--p-font-size);
   border: none;
   border-radius: 10px;
@@ -139,7 +140,7 @@ p svg {
   gap: 5px;
 }
 .btn:hover {
-  background-color: #303030;
+  background-color: var(--btn-hover-bg);
 }
 .btn.square {
   padding: 12px;
@@ -259,25 +260,45 @@ table th, table td {
 }
 
 :root {
-  --card-width: 12%;
-  --card-aspect-ratio: 10 / 14;
-  --card-per-row: 8;
-  --card-font-size: 2vw;
-  --card-diagonal-font-size: 1.5vw;
-  --card-padding: 10px;
+  --card-width: 19%;
+  --card-aspect-ratio: 10 / 15;
+  --card-per-row: 5;
+  --card-font-size: 3.5vw;
+  --card-diagonal-font-size: 2.5vw;
+  --card-padding: 7px;
   --card-border-radius: 10px;
+  --card-inner-width: calc(100% - (8 * var(--card-padding)));
+  --card-inner-height: calc(100% - (6 * var(--card-padding)));
 }
 
+@media screen and (min-width: 1000px) {
+  :root {
+    --card-font-size: 30px;
+    --card-diagonal-font-size: 25px;
+    --card-inner-width: calc(190px - (8.5 * var(--card-padding)));
+    --card-inner-height: calc(285px - (6 * var(--card-padding)));
+  }
+}
 @media screen and (max-width: 768px) {
   :root {
-    --card-per-row: 6;
-    --card-width: 16%;
-    --card-font-size: 3vw;
-    --card-diagonal-font-size: 2vw;
+    --card-per-row: 5;
+    --card-width: 19%;
+    --card-font-size: 3.5vw;
+    --card-diagonal-font-size: 2.5vw;
     --card-padding: 6px;
     --card-border-radius: 5px;
   }
 }
+#game {
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
 .carta {
   --rosso: rgb(149, 46, 46);
   --nero: #111;
@@ -311,6 +332,9 @@ table th, table td {
   --colore-simboli: var(--nero);
   background: var(--bg-card);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* SIMBOLI DIAGONALI */
   /* -------------- */
   /* -------------- */
@@ -363,10 +387,8 @@ table th, table td {
   position: absolute;
   display: flex;
   justify-content: space-between;
-  top: calc(4 * var(--card-padding));
-  left: calc(4 * var(--card-padding));
-  right: calc(4 * var(--card-padding));
-  bottom: calc(4 * var(--card-padding));
+  width: var(--card-inner-width);
+  height: var(--card-inner-height);
 }
 .carta .fronte .card__inner.centered {
   justify-content: center;
@@ -383,7 +405,7 @@ table th, table td {
 .carta .fronte .card__inner .card__column.centered {
   display: flex;
   justify-content: center;
-  gap: calc(2 * var(--card-width));
+  gap: calc(var(--card-width));
 }
 .carta .fronte .card__inner .card__column.huge-symbol {
   justify-content: none;
@@ -393,7 +415,10 @@ table th, table td {
   margin-bottom: auto;
 }
 .carta .fronte .card__inner .card__symbol {
-  font-size: calc(var(--card-font-size) * 1.25);
+  font-size: calc(var(--card-font-size) * 1.5);
+}
+.carta .fronte .card__inner .card__symbol.asso {
+  font-size: calc(var(--card-font-size) * 3);
 }
 .carta .fronte .valore {
   font-size: var(--card-font-size);
@@ -455,15 +480,6 @@ table th, table td {
   background-color: var(--bc);
   overflow-y: scroll;
   padding-bottom: 150px;
-}
-
-#game {
-  padding: 10px 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .cont-vite {

@@ -23,14 +23,17 @@ class Card_Roulette {
             }
         };
         this.max_vita = 4;
-        this.n_veri = 0;
-        this.n_falsi = 0;
         this.current_player = null;
+        this.tempo_attesa_sparo = 1000;
+        this.timeouts = new Timeouts();
+        // proiettili
+        this.max_proiettili = 6;
+        this.min_proiettili = 2;
         this.proiettili = [];
         this.index_proiettile = 0;
         this.proiettili_esauriti = false;
-        this.tempo_attesa_sparo = 1000;
-        this.timeouts = new Timeouts();
+        this.n_veri = 0;
+        this.n_falsi = 0;
     }
 
     init() {
@@ -63,9 +66,11 @@ class Card_Roulette {
     }
 
     init_round() {
+        // reset
         log.reset();
         this.timeouts.clear_all();
-        const n_proiettili = random.min_max(2, 8);
+        // inizializzo tutte le variabili
+        const n_proiettili = random.min_max(this.min_proiettili, this.max_proiettili);
         this.index_proiettile = 0;
         this.n_veri = 0;
         this.n_falsi = 0;
@@ -76,10 +81,11 @@ class Card_Roulette {
         // scelgo le carte che faranno da proiettile
         for (let i = 0; i < n_proiettili; i++) {
             const proiettile = game.mazzo.pesca();
+            proiettile.sparato = false;
             this.proiettili.push(proiettile);
-            // --
-            proiettile.sfondo == 'rosso' ? this.n_veri++ : this.n_falsi++;
         }
+        // conto il numero di proiettili veri e falsi che ci sono
+        this.conta_proiettili();
         // se non ci sono carte di un tipo o di un altro rieseguo l'estrazione
         if (this.n_veri == 0 || this.n_falsi == 0) return this.init_round();
         // stampo le carte
@@ -98,6 +104,19 @@ class Card_Roulette {
         const who_start = this.current_player != null ? (this.current_player == 0) : random.bool();
         who_start ? dealer.dealer_turn() : player.player_turn();
         // player.player_turn();
+    }
+    /**
+     * conta il numero di proiettili falsi e veri
+     */
+    conta_proiettili() {
+        this.n_falsi = 0;
+        this.n_veri = 0;
+        for (let i = 0; i < this.proiettili.length; i++) {
+            const proiettile = this.proiettili[i];
+            if (!proiettile.sparato) {
+                proiettile.sfondo == 'rosso' ? this.n_veri++ : this.n_falsi++;
+            }
+        }
     }
     /**
      * Genera i gadgets

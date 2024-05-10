@@ -102,9 +102,8 @@ p {
 }
 
 .btn {
-    --bc-btn: #333;
-    background-color: var(--bc-btn);
-    color: var(--color);
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
     font-size: var(--p-font-size);
     border: none;
     border-radius: 10px;
@@ -117,7 +116,7 @@ p {
     gap: 5px;
 
     &:hover {
-        background-color: #303030;
+        background-color: var(--btn-hover-bg);
     }
 
     &.square {
